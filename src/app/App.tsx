@@ -52,13 +52,33 @@
 
 // export default App;import React from "react";
 
-import Calculator from "./components/Calculator";
-import "./App.css";
+//import Calculator from "./components/Calculator";
+import "../App.css";
+import Login from "../pages/Login";
+import DoctorForm from "../pages/Doctor";
+import PatientForm from "../pages/Patient";
+import { NumericKeypad } from "../pages/NumericKeypad";
 
 const App: React.FC = () => {
+
+    const handleDataSubmit = () => {
+        console.log('Submitted Data:');
+        // Add your form submission logic here
+      };
+    
+      const handleCancel = () => {
+        console.log('Input canceled.');
+        // Add your cancel logic here
+      };
+    
+
+
     return (
-        <div className="App">
-            <Calculator />
+        <div  className="App">
+            <PatientForm/>
+            <NumericKeypad onSubmit={handleDataSubmit} onCancel={handleCancel} />
+            <DoctorForm/>
+            <Login />
         </div>
     );
 };
