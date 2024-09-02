@@ -1,25 +1,7 @@
-// import React from 'react';
-// import { Menu } from 'semantic-ui-react';
-// import { Link } from 'react-router-dom';
-
-// export const Header: React.FC = () => (
-//   <Menu>
-//     <Menu.Item name="home">
-//       <Link to="/">Home</Link>
-//     </Menu.Item>
-//     <Menu.Item name="admin">
-//       <Link to="/admin">Admin</Link>
-//     </Menu.Item>
-//     <Menu.Item name="doctor">
-//       <Link to="/doctor">Doctor</Link>
-//     </Menu.Item>
-//   </Menu>
-// );
-
 import React, { useContext } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Icon, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import {AuthContext} from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 export const Header: React.FC = () => {
   const { isAuthenticated, role, logout } = useContext(AuthContext);
@@ -27,7 +9,7 @@ export const Header: React.FC = () => {
   return (
     <Menu>
       <Menu.Item name="home">
-        <Link to="/">Home</Link>
+        <Link to="/"><Icon name='home' size='big' /></Link>
       </Menu.Item>
       {isAuthenticated && role === 'admin' && (
         <Menu.Item name="admin">
