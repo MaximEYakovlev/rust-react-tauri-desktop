@@ -80,6 +80,7 @@ import { Button, Message } from 'semantic-ui-react';
 
 export const AdminPage: React.FC = () => {
   const [doctorsExist, setDoctorsExist] = useState<boolean>(false);
+  const [procedures, setProcedures] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -90,24 +91,39 @@ export const AdminPage: React.FC = () => {
     setLoading(false);
   };
 
+  const fetchProcedures = async () => {
+    // Replace with API call
+    const mockProcedures = JSON.parse(localStorage.getItem('procedures') || '[]');
+    setProcedures(mockProcedures);
+  };
+
   useEffect(() => {
     checkDoctors();
+    fetchProcedures();
   }, []); // Run only on mount
 
   return (
-    <div>
+    <div> 
       <h1>Admin Dashboard</h1>
       <Link to="/create-doctor">
-        <Button primary>Create New Doctor</Button>
+        <Button color='green'>Create New Doctor</Button>
       </Link>
       {doctorsExist && (
         <Link to="/doctors-list">
-          <Button primary>List of Doctors</Button>
+          <Button color='green'>List of Doctors</Button>
         </Link>
       )}
+      <Button as={Link} to="/create-procedure">
+        Create New Procedure
+      </Button>
+      {procedures.length > 0 && (
+        <Button as={Link} to="/procedures-list">
+          List of Procedures
+        </Button>
+      )}
       {error && <Message negative>{error}</Message>}
-      <Link to="/service">
-        <Button primary>Service Data</Button>
+      <Link to="/service-data">
+        <Button color='red'>Service Data</Button>
       </Link>
     </div>
   );

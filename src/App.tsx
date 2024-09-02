@@ -79,6 +79,9 @@ import { CreateDoctorPage } from './pages/CreateDoctorPage';
 import { DoctorsListPage } from './pages/DoctorsListPage';
 import { CreatePatientPage } from './pages/CreatePatientPage';
 import { PatientsListPage } from './pages/PatientsListPage';
+import { CreateProcedurePage } from './pages/CreateProcedurePage';
+import { ProceduresListPage } from './pages/ProceduresListPage';
+import { ServicePage } from './pages/ServicePage';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 
 const App: React.FC = () => {
@@ -121,6 +124,22 @@ const App: React.FC = () => {
             }
           />
           <Route
+            path="/create-procedure"
+            element={
+              <ProtectedRoute role="admin">
+                <CreateProcedurePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/procedures-list"
+            element={
+              <ProtectedRoute role="admin">
+                <ProceduresListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/create-doctor"
             element={
               <ProtectedRoute role="admin">
@@ -133,6 +152,14 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute role="admin">
                 <DoctorsListPage />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/service-data"
+            element={
+              <ProtectedRoute role="admin">
+                <ServicePage />
               </ProtectedRoute>
             }
           />
