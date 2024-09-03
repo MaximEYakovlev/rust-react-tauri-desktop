@@ -21,8 +21,7 @@
     "reflect-metadata": "^0.2.2",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
-    "sequelize": "^6.37.3",
-    "sequelize-typescript": "^2.1.6"
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",

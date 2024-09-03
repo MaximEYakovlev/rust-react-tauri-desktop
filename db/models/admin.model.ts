@@ -1,49 +1,52 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional } from 'sequelize';
+import sequelize from '../config/sequelize';
+import exp from 'constants';
 
-@Table({
-    timestamps: true,
-    tableName: 'admin',
-})
-export class Admin extends Model<Admin> {
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    name!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    surname!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    username!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    password!: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    role!: string;
-
-    @Column({
-        type: DataType.DATE,
-        defaultValue: DataType.NOW,
-    })
-    created_at!: Date;
-
-    @Column({
-        type: DataType.DATE,
-        defaultValue: DataType.NOW,
-    })
-    updated_at!: Date;
+class Admin extends Model<InferAttributes<Admin>, InferCreationAttributes<Admin>> {
+    declare id: number;
+    declare firstName: string;
+    declare lastName: string;
+    declare username: string;
+    declare password: string;
+    declare role: string;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
 }
+
+Admin.init(
+    {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        firstName: {
+            type: new DataTypes.STRING(128),
+            allowNull: false
+        },
+        lastName: {
+            type: new DataTypes.STRING(128),
+            allowNull: false
+        },
+        username: {
+            type: new DataTypes.STRING(128),
+            allowNull: false
+        },
+        password: {
+            type: new DataTypes.STRING(128),
+            allowNull: false
+        },
+        role: {
+            type: new DataTypes.STRING(128),
+            allowNull: false
+        },
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
+    },
+    {
+        tableName: 'admin',
+        sequelize
+    }
+);
+
+export default Admin;
