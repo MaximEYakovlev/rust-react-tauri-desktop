@@ -109,7 +109,6 @@ export const HomePage: React.FC = () => {
     if (role) {
       const isSuccess = login(role, username, password);
       if (isSuccess) {
-        // Navigate to the respective user's page based on their role
         if (role === 'admin') {
           navigate('/admin');
         } else if (role === 'doctor') {
@@ -130,7 +129,6 @@ export const HomePage: React.FC = () => {
     <div>
       <h1>Welcome to the Nist App</h1>
 
-      {/* Role Selection */}
       <Dropdown
         placeholder="Select Role"
         fluid
