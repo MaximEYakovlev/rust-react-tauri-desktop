@@ -1,57 +1,63 @@
-import { Table, Column, Model, DataType, ForeignKey } from 'sequelize-typescript';
-import { System } from './system.model';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional, ForeignKey } from 'sequelize';
+import sequelize from '../config/sequelize';
+import System from './system.model';
 
-@Table({
-  timestamps: true,
-  tableName: 'sensor',
-})
-export class Sensor extends Model<Sensor> {
-  @ForeignKey(() => System)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  system_id!: number;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  name!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  type!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  unit!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  location?: string;
-
-  @Column({
-    type: DataType.TEXT,
-    allowNull: true,
-  })
-  description?: string;
-
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
-  created_at!: Date;
-
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
-  updated_at!: Date;
+class Sensor extends Model<InferAttributes<Sensor>, InferCreationAttributes<Sensor>> {
+  declare id: number;
+  declare systemId: ForeignKey<System['id']>;
+  declare name: string;
+  declare type: string;
+  declare unit: string;
+  declare location: string;
+  declare description: string;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
 }
+
+Sensor.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    name: {
+      type: new DataTypes.STRING(128),
+      allowNull: false
+    },
+    type: {
+      type: new DataTypes.STRING(128),
+      allowNull: false
+    },
+    unit: {
+      type: new DataTypes.STRING(128),
+      allowNull: false
+    },
+    location: {
+      type: new DataTypes.STRING(128),
+      allowNull: false
+    },
+    description: {
+      type: new DataTypes.STRING(128),
+      allowNull: false
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  },
+  {
+    tableName: 'sensors',
+    sequelize
+  }
+);
+
+Sensor.belongsTo(
+  System,
+  {
+    foreignKey: 'systemId',
+    as: 'system'
+  }
+);
+
+export default Sensor;
+
+

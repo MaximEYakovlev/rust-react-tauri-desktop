@@ -1,11 +1,3 @@
-
-
-// export const Login:React.FC = () => {
-//     return (
-//         <div>login</div>
-//     )
-// }
-
 import React, { useState } from 'react';
 import { Button, Form, Grid, Header, Segment, Input } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
