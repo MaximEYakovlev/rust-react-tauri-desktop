@@ -1,6 +1,7 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional, ForeignKey } from 'sequelize';
 import sequelize from '../config/sequelize';
 import System from './system.model';
+import SensorData from './sensor-data.model';
 
 class Sensor extends Model<InferAttributes<Sensor>, InferCreationAttributes<Sensor>> {
   declare id: number;
@@ -55,6 +56,15 @@ Sensor.belongsTo(
   {
     foreignKey: 'systemId',
     as: 'system'
+  }
+);
+
+Sensor.hasMany(
+  SensorData,
+  {
+    sourceKey: 'id',
+    foreignKey: 'sensorId',
+    as: 'sensorData'
   }
 );
 

@@ -1,39 +1,46 @@
-import { Table, Column, Model, DataType, ForeignKey } from 'sequelize-typescript';
-import { Sensor } from './sensor.model';
+import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional, ForeignKey } from 'sequelize';
+import sequelize from '../config/sequelize';
+import Sensor from './sensor.model';
 
-@Table({
-  timestamps: true,
-  tableName: 'sensor_data',
-})
-export class SensorData extends Model<SensorData> {
-  @ForeignKey(() => Sensor)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  sensor_id!: number;
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-  })
-  recorded_at!: Date;
-
-  @Column({
-    type: DataType.FLOAT,
-    allowNull: false,
-  })
-  value!: number;
-
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
-  created_at!: Date;
-
-  @Column({
-    type: DataType.DATE,
-    defaultValue: DataType.NOW,
-  })
-  updated_at!: Date;
+class SensorData extends Model<InferAttributes<SensorData>, InferCreationAttributes<SensorData>> {
+  declare id: number;
+  declare sensorId: ForeignKey<Sensor['id']>;
+  declare recordedAt: CreationOptional<Date>;
+  declare value: number;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
 }
+
+SensorData.init(
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    recordedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    value: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  },
+  {
+    tableName: 'sensorData',
+    sequelize
+  }
+);
+
+SensorData.belongsTo(
+  Sensor,
+  {
+    foreignKey: 'sensorId',
+    as: 'sensor'
+  }
+);
+
+export default SensorData;
