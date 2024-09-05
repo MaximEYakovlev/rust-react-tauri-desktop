@@ -1,5 +1,6 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional } from 'sequelize';
 import sequelize from '../config/sequelize';
+import Treatment from './treatment.model';
 
 class Procedure extends Model<InferAttributes<Procedure>, InferCreationAttributes<Procedure>> {
   declare id: number;
@@ -25,6 +26,15 @@ Procedure.init(
   {
     tableName: 'procedures',
     sequelize
+  }
+);
+
+Procedure.hasMany(
+  Treatment,
+  {
+    sourceKey: 'id',
+    foreignKey: 'procedureId',
+    as: 'treatments'
   }
 );
 

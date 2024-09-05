@@ -24,15 +24,15 @@ Treatment.init(
       primaryKey: true
     },
     date: {
-      type: new DataTypes.DATE,
+      type: DataTypes.DATE,
       allowNull: false
     },
     totalShots: {
-      type: new DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     totalEnergy: {
-      type: new DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     createdAt: DataTypes.DATE,
@@ -41,6 +41,30 @@ Treatment.init(
   {
     tableName: 'treatments',
     sequelize
+  }
+);
+
+Treatment.belongsTo(
+  Procedure,
+  {
+    foreignKey: 'procedureId',
+    as: 'procedure'
+  }
+);
+
+Treatment.belongsTo(
+  Doctor,
+  {
+    foreignKey: 'doctorId',
+    as: 'doctor'
+  }
+);
+
+Treatment.belongsTo(
+  Patient,
+  {
+    foreignKey: 'patientId',
+    as: 'patient'
   }
 );
 
