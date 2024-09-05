@@ -1,6 +1,5 @@
 import { Model, InferAttributes, InferCreationAttributes, DataTypes, CreationOptional } from 'sequelize';
 import sequelize from '../config/sequelize';
-import exp from 'constants';
 
 class Admin extends Model<InferAttributes<Admin>, InferCreationAttributes<Admin>> {
     declare id: number;
