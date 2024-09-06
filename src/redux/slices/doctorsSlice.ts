@@ -9,6 +9,25 @@ interface Doctor {
   birthdate: string;
 }
 
+/* status: 'idle' | 'loading' | 'succeeded' | 'failed' */
+
+/* pattern is used to represent the different states of an asynchronous operation,
+such as fetching data from an API.
+This is a common practice in Redux to help manage UI behavior based on the current status of the request.
+Here's a breakdown of the four statuses: */
+
+/* idle: This is the initial state before any asynchronous action is triggered. It indicates that nothing is happening yet. */
+
+/* loading: When an asynchronous operation (like an API request) is triggered (e.g.,
+fetching doctors or patients), the status is set to loading.
+This can be used to show a loading spinner or a message like "Loading data...". */
+
+/* succeeded: Once the API request has successfully returned data, the status changes to succeeded.
+This is where the UI can show the actual data that was fetched. */
+
+/* failed: If the API request fails (e.g., network error, server error), the status changes to failed,
+and you can display an error message in the UI. */
+
 interface DoctorsState {
   byId: Record<number, Doctor>;
   allIds: number[];
