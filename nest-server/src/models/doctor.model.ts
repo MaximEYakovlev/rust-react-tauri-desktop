@@ -13,6 +13,9 @@ import { Patient } from './patient.model';
   timestamps: true, // Automatically manage createdAt and updatedAt fields
 })
 export class Doctor extends Model<Doctor> {
+  @BelongsToMany(() => Patient, () => DoctorPatient)
+  patients: Patient[];
+
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -50,9 +53,5 @@ export class Doctor extends Model<Doctor> {
   })
   role: string;
 }
-// @BelongsToMany(() => Patient, () => DoctorPatient, {
-//   as: 'patients', // Alias should match the one used in Patient model
-//   foreignKey: 'doctorId',
-//   otherKey: 'patientId',
-// })
-// patients: Patient[];
+
+

@@ -16,6 +16,9 @@ import { DoctorPatient } from './doctor-patient.model';
   timestamps: true, // Automatically manage createdAt and updatedAt fields
 })
 export class Patient extends Model<Patient> {
+  @BelongsToMany(() => Doctor, () => DoctorPatient)
+  doctors: Doctor[];
+
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -62,11 +65,4 @@ export class Patient extends Model<Patient> {
 
   @BelongsTo(() => SkinType, { as: 'skinType' })
   skinType: SkinType;
-
-  //   @BelongsToMany(() => Doctor, () => DoctorPatient, {
-  //     as: 'doctors', // Alias should match the one used in the Doctor model
-  //     foreignKey: 'patientId',
-  //     otherKey: 'doctorId',
-  //   })
-  //   doctors: Doctor[];
 }
