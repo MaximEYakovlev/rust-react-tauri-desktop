@@ -1,17 +1,11 @@
-import {
-  Table,
-  Column,
-  Model,
-  DataType,
-  HasMany,
-} from 'sequelize-typescript';
-import {Patient} from './patient.model';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Patient } from './patient.model';
 
 @Table({
   tableName: 'skinTypes',
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true,
 })
-export  class SkinType extends Model<SkinType> {
+export class SkinType extends Model<SkinType> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,

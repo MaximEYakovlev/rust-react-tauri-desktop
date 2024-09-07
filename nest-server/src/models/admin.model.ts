@@ -1,8 +1,16 @@
-import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, AllowNull } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  PrimaryKey,
+  AutoIncrement,
+  AllowNull,
+} from 'sequelize-typescript';
 
 @Table({
   tableName: 'admin',
-  timestamps: true, // This will automatically manage `createdAt` and `updatedAt`
+  timestamps: true,
 })
 export class Admin extends Model<Admin> {
   @PrimaryKey

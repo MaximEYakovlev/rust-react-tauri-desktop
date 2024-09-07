@@ -6,13 +6,13 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import {Sensor} from './sensor.model';
+import { Sensor } from './sensor.model';
 
 @Table({
   tableName: 'sensor_data',
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true,
 })
-export  class SensorData extends Model<SensorData> {
+export class SensorData extends Model<SensorData> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,

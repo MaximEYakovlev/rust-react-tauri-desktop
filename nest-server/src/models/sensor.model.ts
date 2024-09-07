@@ -7,12 +7,12 @@ import {
   BelongsTo,
   HasMany,
 } from 'sequelize-typescript';
-import {System} from './system.model';
-import {SensorData} from './sensor-data.model';
+import { System } from './system.model';
+import { SensorData } from './sensor-data.model';
 
 @Table({
   tableName: 'sensors',
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true,
 })
 export class Sensor extends Model<Sensor> {
   @Column({

@@ -13,7 +13,7 @@ import { DoctorPatient } from './doctor-patient.model';
 
 @Table({
   tableName: 'patients',
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true,
 })
 export class Patient extends Model<Patient> {
   @BelongsToMany(() => Doctor, () => DoctorPatient)

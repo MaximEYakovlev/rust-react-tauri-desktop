@@ -6,13 +6,13 @@ import {
   BelongsTo,
   DataType,
 } from 'sequelize-typescript';
-import {Doctor} from './doctor.model';
-import {Patient} from './patient.model';
-import {Procedure} from './procedure.model';
+import { Doctor } from './doctor.model';
+import { Patient } from './patient.model';
+import { Procedure } from './procedure.model';
 
 @Table({
   tableName: 'treatments',
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true,
 })
 export class Treatment extends Model<Treatment> {
   @Column({

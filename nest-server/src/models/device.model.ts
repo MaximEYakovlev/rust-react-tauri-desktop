@@ -1,9 +1,18 @@
-import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, AllowNull, HasMany } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  PrimaryKey,
+  AutoIncrement,
+  AllowNull,
+  HasMany,
+} from 'sequelize-typescript';
 import { System } from './system.model';
 
 @Table({
   tableName: 'devices',
-  timestamps: true, // Automatically manages createdAt and updatedAt
+  timestamps: true,
 })
 export class Device extends Model<Device> {
   @PrimaryKey

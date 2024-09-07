@@ -1,13 +1,8 @@
-import {
-  Table,
-  Column,
-  Model,
-  DataType,
-} from 'sequelize-typescript';
+import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
 @Table({
   tableName: 'execution_units',
-  timestamps: true, // Automatically manage createdAt and updatedAt fields
+  timestamps: true,
 })
 export class ExecutionUnit extends Model<ExecutionUnit> {
   @Column({
