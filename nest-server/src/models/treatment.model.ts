@@ -6,8 +6,8 @@ import {
   BelongsTo,
   DataType,
 } from 'sequelize-typescript';
-import { Doctor } from './doctor.model';
-import { Patient } from './patient.model';
+import { Doctor } from '../doctors/models/doctor.model';
+import { Patient } from '../patients/models/patient.model';
 import { Procedure } from './procedure.model';
 
 @Table({

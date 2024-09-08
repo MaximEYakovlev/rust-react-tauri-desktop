@@ -3,21 +3,18 @@ import {
   Column,
   Model,
   DataType,
-  ForeignKey,
-  BelongsTo,
   BelongsToMany,
 } from 'sequelize-typescript';
-import { SkinType } from './skin-type.model';
-import { Doctor } from './doctor.model';
 import { DoctorPatient } from './doctor-patient.model';
+import { Patient } from '../../patients/models/patient.model';
 
 @Table({
-  tableName: 'patients',
+  tableName: 'doctors',
   timestamps: true,
 })
-export class Patient extends Model<Patient> {
-  @BelongsToMany(() => Doctor, () => DoctorPatient)
-  doctors: Doctor[];
+export class Doctor extends Model<Doctor> {
+  @BelongsToMany(() => Patient, () => DoctorPatient)
+  patients: Patient[];
 
   @Column({
     type: DataType.INTEGER,
@@ -25,13 +22,6 @@ export class Patient extends Model<Patient> {
     primaryKey: true,
   })
   id: number;
-
-  @ForeignKey(() => SkinType)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  skinTypeId: number;
 
   @Column({
     type: DataType.STRING(128),
@@ -55,14 +45,11 @@ export class Patient extends Model<Patient> {
     type: DataType.STRING(128),
     allowNull: false,
   })
-  sex: string;
+  password: string;
 
   @Column({
     type: DataType.STRING(128),
-    allowNull: true,
+    allowNull: false,
   })
-  comment: string;
-
-  @BelongsTo(() => SkinType, { as: 'skinType' })
-  skinType: SkinType;
+  role: string;
 }

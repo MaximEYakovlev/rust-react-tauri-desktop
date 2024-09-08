@@ -6,7 +6,7 @@ import {
   DataType,
 } from 'sequelize-typescript';
 import { Doctor } from './doctor.model';
-import { Patient } from './patient.model';
+import { Patient } from '../../patients/models/patient.model';
 
 @Table({
   tableName: 'doctor_patients',
