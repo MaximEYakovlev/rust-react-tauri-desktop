@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { setupRequestInterceptor, setupResponseInterceptor } from './interceptors';
 import { CustomError } from './errors/customErrors';
 import { API_URL } from '../config'; // Assuming you have a config file with API_URL
-
+    
 export class HttpService {
   private axiosInstance: AxiosInstance;
 
