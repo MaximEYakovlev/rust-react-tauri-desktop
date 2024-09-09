@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { setupRequestInterceptor, setupResponseInterceptor } from './interceptors';
+import { setupRequestInterceptor } from './interceptors/requestInterceptor';
+import { setupResponseInterceptor } from './interceptors/responseInterceptor';
 import { CustomError } from './errors/customErrors';
 import { API_URL } from '../config'; // Assuming you have a config file with API_URL
     
