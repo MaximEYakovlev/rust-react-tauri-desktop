@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { Admin } from './models/admin.model';
 
 @Injectable()
 export class AdminService {
-  private readonly admins: Admin[];
+  constructor(@InjectModel(Admin) private readonly adminModel: typeof Admin) {}
 
-  async findOne(username: string): Promise<Admin | undefined> {
-    return this.admins.find((admin) => admin.username === username);
+  async findOne(username: string): Promise<Admin> {
+    return this.adminModel.findOne({
+      where: {
+        username,
+      },
+    });
   }
 }
