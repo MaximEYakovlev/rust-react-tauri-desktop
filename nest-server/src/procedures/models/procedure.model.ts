@@ -1,5 +1,5 @@
 import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
-import { Treatment } from './treatment.model';
+import { Treatment } from '../../treatments/models/treatment.model';
 
 @Table({
   tableName: 'procedures',
