@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './Range.module.css'
 
 export const Range = () => {
     const [value, setValue] = useState(50);
@@ -14,7 +15,7 @@ export const Range = () => {
     }
 
     return (
-        <div class="range-container">
+        <div className={styles.container}>
             <button onClick={() => handleChange(4)}>+</button>
             <input type="range" min={minValue} max={maxValue} value={value} step={4} />
             <button onClick={() => handleChange(-4)}>-</button>
